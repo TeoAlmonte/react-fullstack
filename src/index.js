@@ -1,18 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import axios from 'axios'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import App from './components/App'
+import App from './components/App';
 
-
-axios.get('/api/contests')
-  .then(resp => {
-    return {
-      initialMarkup:  ReactDOM.render(
-        <App initialContests={resp.data.contests} />,
-        document.getElementById('root')
-      ),
-      initialData: resp.data
-    }
-  })
-.catch(console.error)
+ReactDOM.render(
+  <App initialContests={window.initialData.contests} />,
+  document.getElementById('root')
+);

@@ -20,9 +20,12 @@ app.engine('hbs', exphbs({defaultLayout: 'main',extname: '.hbs'}));
 
 app.get('/', function (req, res) {
   serverRender()
-    .then(content => {
+    .then(({ initialMarkup, initialData }) => {
+      var initialData = initialData
+      initialData = JSON.stringify(initialData)
       res.render('home', {
-        content
+        initialMarkup,
+        initialData
       })
     })
     .catch(console.error)
