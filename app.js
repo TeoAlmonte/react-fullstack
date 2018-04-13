@@ -2,10 +2,17 @@ import express from 'express'
 import config from './config'
 import router from './api/index'
 import exphbs from 'express-handlebars'
+import sassMiddleware from 'node-sass-middleware'
+import path from 'path'
 
 const app = express();
 
 app.use(express.static('public'))
+
+app.use(sassMiddleware({
+  src: path.join(__dirname, 'sass'),
+  dest: path.join(__dirname, 'public')
+}))
 
 app.set('view engine', 'hbs');
 app.engine('hbs', exphbs({defaultLayout: 'main',extname: '.hbs'}));
