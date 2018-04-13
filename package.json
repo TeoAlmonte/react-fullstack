@@ -11,6 +11,7 @@
   "author": "teo",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "json-loader": "^0.5.7",

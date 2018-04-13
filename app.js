@@ -4,6 +4,7 @@ import router from './api/index'
 import exphbs from 'express-handlebars'
 import sassMiddleware from 'node-sass-middleware'
 import path from 'path'
+import serverRender from './serverRender'
 
 const app = express();
 
@@ -18,11 +19,17 @@ app.set('view engine', 'hbs');
 app.engine('hbs', exphbs({defaultLayout: 'main',extname: '.hbs'}));
 
 app.get('/', function (req, res) {
-  res.render('home');
+  serverRender()
+    .then(content => {
+      res.render('home', {
+        content
+      })
+    })
+    .catch(console.error)
 });
 
 app.use('/api', router)
 
-app.listen(config.port, () => {
+app.listen(config.port, config.host, () => {
   console.log(`express running on http://localhost:${config.port}`)
 })

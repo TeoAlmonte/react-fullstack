@@ -7,12 +7,10 @@ import data from '../testData'
 class App extends Component {
   state = {
     pageHeader: 'This Message',
-    contests: []
+    contests: this.props.initialContests
   }
   componentDidMount() {
-    this.setState({
-      contests: data.contests
-    })
+
   }
   render() {
     return (
@@ -20,7 +18,7 @@ class App extends Component {
         <Header message={this.state.pageHeader} />
         <div>
           {this.state.contests.map(contest =>
-            <ContestPreview {...contest} key={contest.id} />
+            <ContestPreview  key={contest.id} {...contest}/>
           )}
         </div>
       </div>
